@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const Private = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // State to check authentication
+  const token = localStorage.getItem('token'); // Retrieve the token from local storage
 
-  // Conditional rendering based on authentication
-  return isAuthenticated ? <Outlet /> : <Navigate to="/signIn" />;
+  // Conditional rendering based on token existence
+  return token ? <Outlet /> : <Navigate to="/signIn" />;
 };
 
 export default Private;
-

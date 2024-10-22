@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 const LostItemCard = ({ item }) => {
   return (
-    <div className="border rounded-lg overflow-hidden shadow-lg bg-white">
+    <div className="border rounded-lg overflow-hidden shadow-lg bg-[#DFF2EB]">
       <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
       <div className="p-4">
-        <h2 className="text-lg font-semibold mb-2">{item.title}</h2>
-        <p className="text-sm text-gray-600">{item.category}</p>
+        <h2 className="text-lg font-semibold mb-2 text-[#4A628A]">{item.title}</h2>
+        <p className="text-sm text-[#7AB2D3]">{item.category}</p>
         <p className="text-gray-800">{item.description}</p>
       </div>
     </div>
@@ -45,13 +45,13 @@ const LostItemsPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container h-full  mx-auto px-4 bg-[#B9E5E8] ">
       <div className="flex justify-between items-center py-4">
-        <h1 className="text-2xl font-bold">Lost Items in College</h1>
+        <h1 className="text-2xl font-bold text-[#4A628A]">Lost Items in College</h1>
         <input
           type="text"
           placeholder="Search for lost items"
-          className="border p-2 rounded-lg w-1/3"
+          className="border p-2 rounded-lg w-1/3 bg-white"
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)} // Update the search query on change
         />
@@ -69,19 +69,19 @@ const LostItemsPage = () => {
         <button
           onClick={handlePrevious}
           disabled={currentPage === 1}
-          className="bg-gray-200 text-gray-700 py-2 px-4 rounded-lg disabled:opacity-50"
+          className="bg-[#7AB2D3] text-white py-2 px-4 rounded-lg hover:bg-[#4A628A] disabled:opacity-50"
         >
           Previous
         </button>
 
-        <p className="text-gray-700">
+        <p className="text-[#4A628A]">
           Page {currentPage} of {totalPages}
         </p>
 
         <button
           onClick={handleNext}
           disabled={currentPage === totalPages}
-          className="bg-gray-200 text-gray-700 py-2 px-4 rounded-lg disabled:opacity-50"
+          className="bg-[#7AB2D3] text-white py-2 px-4 rounded-lg hover:bg-[#4A628A] disabled:opacity-50"
         >
           Next
         </button>
@@ -90,8 +90,8 @@ const LostItemsPage = () => {
   );
 };
 
-
 export default LostItemsPage;
+
 
 const lostItems = [
     {

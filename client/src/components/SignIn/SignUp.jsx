@@ -1,19 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const SignUp = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch('http://localhost:5000/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    const data = await res.json();
+    if (data.token) {
+      console.log('Sign Up successful');
+    } else {
+      console.error(data.msg);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#B9E5E8]">
       <div className="backdrop-blur-lg bg-white/30 p-10 rounded-lg shadow-lg w-full max-w-md border border-white/40">
         <h2 className="text-3xl font-semibold text-center mb-8 text-[#4A628A]">Sign Up</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-6">
             <label className="block text-[#4A628A] text-sm font-medium mb-2" htmlFor="name">
               Name
             </label>
             <input
-              className="w-full p-3 bg-white/50 border border-[#B9E5E8] rounded-lg focus:outline-none focus:border-[#7AB2D3] focus:bg-white/80"
+              className="w-full p-3 bg-white/50 border border-[#B9E5E8] rounded-lg"
               type="text"
               id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Enter your name"
             />
           </div>
@@ -22,9 +44,11 @@ const SignUp = () => {
               Email
             </label>
             <input
-              className="w-full p-3 bg-white/50 border border-[#B9E5E8] rounded-lg focus:outline-none focus:border-[#7AB2D3] focus:bg-white/80"
+              className="w-full p-3 bg-white/50 border border-[#B9E5E8] rounded-lg"
               type="email"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
             />
           </div>
@@ -33,25 +57,18 @@ const SignUp = () => {
               Password
             </label>
             <input
-              className="w-full p-3 bg-white/50 border border-[#B9E5E8] rounded-lg focus:outline-none focus:border-[#7AB2D3] focus:bg-white/80"
+              className="w-full p-3 bg-white/50 border border-[#B9E5E8] rounded-lg"
               type="password"
               id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
             />
           </div>
-          <button
-            className="w-full py-3 bg-[#7AB2D3] hover:bg-[#4A628A] text-white font-semibold rounded-lg shadow-md transition duration-300"
-            type="submit"
-          >
+          <button type='submit' className="w-full py-3 bg-[#7AB2D3] text-white font-semibold rounded-lg">
             Sign Up
           </button>
         </form>
-        <p className="text-center text-sm text-[#4A628A] mt-6">
-          Already have an account?{' '}
-          <a href="/signIn" className="text-[#7AB2D3] font-semibold hover:text-[#4A628A]">
-            Sign In
-          </a>
-        </p>
       </div>
     </div>
   );

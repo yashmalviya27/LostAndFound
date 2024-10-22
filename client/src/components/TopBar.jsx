@@ -20,9 +20,9 @@ function TopBar() {
 
   return (
     <div
-      className={` fixed w-full flex justify-center items-center transition-all duration-500 ease-in-out ${isScrolled
+      className={`fixed w-full flex justify-center items-center transition-all duration-500 ease-in-out ${isScrolled
         ? 'text-[#4A628A] bg-[#DFF2EB] border-b border-[#7AB2D3] shadow-sm'
-        : 'bg[#4A628A] text-white'
+        : 'bg-[#4A628A] text-white'
         }`}
     >
       <div
@@ -45,16 +45,16 @@ function TopBar() {
             <Link
               key={index}
               className={`cursor-pointer transition-colors duration-300 
-                ${change === item.name ? 'text-[#4A628A]' : 'text-white'} // Manual click color change
+                ${change === item.name ? 'text-[#000000b1]' : 'text-white'}
               `}
-              activeClass="text-[#4A628A]" // Automatically adds this class when scrolled to this section
+              activeClass="text-[#4A628A]"
               to={item.url}
               spy={true}
               smooth={true}
               offset={-50}
               duration={500}
-              onSetActive={() => setChange(item.name)} // Updates the state when the section becomes active during scroll
-              onClick={() => setChange(item.name)} // Update state when manually clicked
+              onSetActive={() => setChange(item.name)}
+              onClick={() => setChange(item.name)}
             >
               {item.name}
             </Link>
@@ -70,6 +70,7 @@ function TopBar() {
             Sign In
           </NavLink>
           <NavLink
+            to={'/SignUp'}
             className="bg-white text-[#4A628A] rounded-md border-2 border-[#4A628A] py-1 px-3 hover:bg-[#4A628A] hover:text-white transition"
           >
             Sign Up
@@ -83,22 +84,6 @@ function TopBar() {
 const items = [
   { name: 'Home', url: 'home' },
   { name: 'Item', url: 'item' },
-  
 ];
 
 export default TopBar;
-
-
-//   const b = () => {
-//     return 'blue';
-//   };
-//   bg-${b()}
-
-
-// Online Meeting Point
-// Between Those Looking for Lost Items and Those Who’ve Found Them
-
-// Lost & Found: The First Online Meeting Point
-// Where Seekers and Finders Connect
-
-// A platform for those who have lost items to post their missing products and for those who find them to reach out and connect.
