@@ -83,7 +83,7 @@ function TopBar() {
 const items = [
   { name: 'Home', url: 'home' },
   { name: 'Item', url: 'item' },
-  { name: 'Page', url: 'page' },
+  
 ];
 
 export default TopBar;

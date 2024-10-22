@@ -1,45 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+import React, { useState } from 'react';
 
-// Card component to display each lost item
 const LostItemCard = ({ item }) => {
-  const cardRef = useRef(null); // Reference to the card element
-
-  useEffect(() => {
-    // GSAP entry animation for the card when it first appears
-    gsap.from(cardRef.current, {
-      opacity: 50,
-      y: 70, // Cards will appear to slide up from below
-      duration: 1,
-      ease: 'power3.out',
-      stagger: 1, // Small stagger for each card
-    });
-  }, []);
-
   return (
-    <div
-      ref={cardRef} // Attach GSAP animation to this div
-      className="border rounded-lg overflow-hidden shadow-lg bg-white transition-transform transform hover:scale-105"
-    >
-      <img
-        src={item.image}
-        alt={item.title}
-        className="w-full h-32 object-cover" // Adjust height for better appearance
-      />
+    <div className="border rounded-lg overflow-hidden shadow-lg bg-white">
+      <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
       <div className="p-4">
-        <h2 className="text-lg font-semibold mb-1">{item.title}</h2>
+        <h2 className="text-lg font-semibold mb-2">{item.title}</h2>
         <p className="text-sm text-gray-600">{item.category}</p>
-        <p className="text-gray-800 mt-2">{item.description}</p>
+        <p className="text-gray-800">{item.description}</p>
       </div>
     </div>
   );
 };
 
-// Main page component
 const LostItemsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6; // 2 columns of 3 items each
+  const itemsPerPage = 7;
 
   // Filter lost items based on the search query
   const filteredItems = lostItems.filter(item =>
@@ -68,31 +45,31 @@ const LostItemsPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <div className="flex justify-between items-center mb-4">
+    <div className="container mx-auto px-4">
+      <div className="flex justify-between items-center py-4">
         <h1 className="text-2xl font-bold">Lost Items in College</h1>
         <input
           type="text"
           placeholder="Search for lost items"
           className="border p-2 rounded-lg w-1/3"
           value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
+          onChange={e => setSearchQuery(e.target.value)} // Update the search query on change
         />
       </div>
 
       {/* Display the filtered and paginated items */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {currentItems.map(item => (
           <LostItemCard key={item.id} item={item} />
         ))}
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex justify-between items-center mt-4">
+      <div className="flex justify-between items-center py-4">
         <button
           onClick={handlePrevious}
           disabled={currentPage === 1}
-          className="bg-gray-200 text-gray-700 py-2 px-4 rounded-lg disabled:opacity-50 transition-opacity duration-200"
+          className="bg-gray-200 text-gray-700 py-2 px-4 rounded-lg disabled:opacity-50"
         >
           Previous
         </button>
@@ -104,7 +81,7 @@ const LostItemsPage = () => {
         <button
           onClick={handleNext}
           disabled={currentPage === totalPages}
-          className="bg-gray-200 text-gray-700 py-2 px-4 rounded-lg disabled:opacity-50 transition-opacity duration-200"
+          className="bg-gray-200 text-gray-700 py-2 px-4 rounded-lg disabled:opacity-50"
         >
           Next
         </button>
@@ -113,6 +90,8 @@ const LostItemsPage = () => {
   );
 };
 
+
+export default LostItemsPage;
 
 const lostItems = [
     {
@@ -221,4 +200,3 @@ const lostItems = [
       description: 'I lost my USB drive, likely in the computer lab. It’s a black 32GB drive with a small sticker that has my initials. If found, please contact me at [Insert Contact Details].',
     },
   ];
-export default LostItemsPage;

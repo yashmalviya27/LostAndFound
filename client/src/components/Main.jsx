@@ -2,7 +2,7 @@ import React from 'react';
 import TopBar from './TopBar';
 import Home from './Home';
 import { Element } from 'react-scroll';
-import Page from './Page';
+
 import LostItemsPage from './LostItemsPage';
 
 
@@ -16,9 +16,6 @@ function Main() {
       </Element>
       <Element name="item">
         <LostItemsPage/>
-      </Element>
-      <Element name="page">
-        <Page  />
       </Element>
     </div>
   );
