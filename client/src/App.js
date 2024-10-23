@@ -7,6 +7,8 @@ import Private from './components/Private';
 import SignUp from './components/SignIn/SignUp';
 import Dashboard from './components/profile/Dashboard';
 import Profile from './components/profile/Profile';
+import Status from './components/profile/Status';
+import Search from './components/profile/Search';
 
 function App() {
   return (
@@ -16,8 +18,11 @@ function App() {
         <Route path='/signIn' element={<SignIn />} />
         <Route path='/SignUp' element={<SignUp />} />
         <Route path='/private' element={<Private />} >
-        <Route path='dashboard' element={<Dashboard/>}/>
+        <Route path='dashboard' element={<Dashboard/>}>
         <Route path="profile" element={<Profile/>} /> 
+        <Route path='Status' element={<Status/>}/>
+        <Route path='Search' element={<Search/>}/>
+        </Route>
         </Route>
       </Routes>
     </div>
